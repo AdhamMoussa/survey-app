@@ -23,7 +23,8 @@ module.exports = () => {
       {
         clientID: googleClientID,
         clientSecret: googleClientSecret,
-        callbackURL: "/auth/google/callback"
+        callbackURL: "/auth/google/callback",
+        proxy: true
       },
       (accessToken, refreshToken, profile, done) => {
         // fetch DB for that user, if exists > log in, else > creat new user
