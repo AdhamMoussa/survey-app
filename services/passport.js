@@ -26,25 +26,21 @@ module.exports = () => {
         callbackURL: "/auth/google/callback",
         proxy: true
       },
-      (accessToken, refreshToken, profile, done) => {
+      async (accessToken, refreshToken, profile, done) => {
         // fetch DB for that user, if exists > log in, else > creat new user
-        User.findOne({
+        const user = await User.findOne({
           googleID: profile.id
-        }).then(user => {
-          if (user) {
-            // login
-            done(null, user);
-          } else {
-            // create new user
-            new User({
-              googleID: profile.id
-            })
-              .save()
-              .then(user => {
-                done(null, user);
-              });
-          }
         });
+        if (user) {
+          // login
+          done(null, user);
+        } else {
+          // create new user
+          const newUser = await new User({
+            googleID: profile.id
+          }).save();
+          done(null, newUser);
+        }
       }
     )
   );
