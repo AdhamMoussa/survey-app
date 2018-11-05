@@ -1,6 +1,7 @@
 import React from "react";
-import AppRouter from "./routes/AppRouter";
 import { connect } from "react-redux";
+
+import AppRouter from "./routes/AppRouter";
 import { startFetchAuth } from "./actions/authActions";
 
 class App extends React.Component {
@@ -16,10 +17,13 @@ class App extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     startFetchAuth: () => dispatch(startFetchAuth())
   };
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);

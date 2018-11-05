@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import LandingPage from "../components/LandingPage";
 import Dashboard from "../components/Dashboard";
 import NewSurvey from "../components/NewSurvey";
+import Checkout from "../components/Checkout";
 
 const AppRouter = () => (
   <Router>
@@ -13,6 +14,7 @@ const AppRouter = () => (
         <Route path="/" component={LandingPage} exact />
         <Route path="/surveys" component={Dashboard} exact />
         <Route path="/surveys/new" component={NewSurvey} />
+        <Route path="/add-credits" component={Checkout} />
       </Switch>
     </Fragment>
   </Router>
