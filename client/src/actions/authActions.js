@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const fetchAuth = user => ({
+export const fetchAuth = user => ({
   type: "FETCH_AUTH",
   user
 });

@@ -1,5 +1,6 @@
 import React from "react";
 import { injectStripe, CardElement } from "react-stripe-elements";
+import { connect } from "react-redux";
 
 const styles = {
   fontSize: "24px"
@@ -8,9 +9,11 @@ const styles = {
 class CheckoutForm extends React.Component {
   onSubmit = e => {
     e.preventDefault();
+    this.props.creditsLoading();
     this.props.stripe.createToken().then(res => {
-      console.log(res.token);
+      this.props.startPayment(res.token);
     });
+    setTimeout(() => this.cForm.clear(), 200);
   };
   render() {
     return (
@@ -21,7 +24,11 @@ class CheckoutForm extends React.Component {
             padding: "10px 20px"
           }}
         >
-          <CardElement hidePostalCode style={{ base: styles }} />
+          <CardElement
+            hidePostalCode
+            style={{ base: styles }}
+            onReady={card => (this.cForm = card)}
+          />
         </div>
         <button className="btn blue">Pay $5</button>
       </form>
@@ -29,4 +36,8 @@ class CheckoutForm extends React.Component {
   }
 }
 
-export default injectStripe(CheckoutForm);
+const mapDispatchToProps = dispatch => ({
+  creditsLoading: () => dispatch({ type: 'LOADING' })
+});
+
+export default injectStripe(connect(null, mapDispatchToProps)(CheckoutForm));

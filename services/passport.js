@@ -37,7 +37,7 @@ module.exports = () => {
         } else {
           // create new user
           const newUser = await new User({
-            googleID: profile.id
+            googleID: profile.id,
           }).save();
           done(null, newUser);
         }

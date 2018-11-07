@@ -5,6 +5,7 @@ const passport = require("passport");
 const { mongoURL, cookieKey } = require("./config/keys");
 const passportConfig = require("./services/passport");
 const authRoutes = require("./routes/authRoutes");
+const paymentRoutes = require("./routes/paymentRouts");
 require("./models/User");
 
 // connect mongoose to MongoDB
@@ -13,6 +14,7 @@ mongoose.connect(mongoURL);
 // init APP
 const app = express();
 
+app.use(express.json());
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -24,6 +26,7 @@ app.use(passport.session());
 
 passportConfig();
 authRoutes(app);
+paymentRoutes(app);
 
 const PORT = process.env.PORT || 5000;
 

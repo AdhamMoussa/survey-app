@@ -23,7 +23,7 @@ const SignedInLinks = () => {
         </Link>
       </li>
       <li>
-        <a href="/api/logout" className="waves-effect waves-light blue">Logout</a>
+        <a href="/api/logout" className="waves-effect waves-light black">Logout</a>
       </li>
     </Fragment>
   );

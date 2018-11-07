@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
+import Credits from "./Credits";
 
 class Header extends Component {
   render() {
@@ -16,7 +17,10 @@ class Header extends Component {
             {this.props.auth === null ? null : this.props.auth === false ? (
               <SignedOutLinks />
             ) : (
-              <SignedInLinks />
+              <Fragment>
+                <Credits creditsCount={this.props.auth.credits} />
+                <SignedInLinks />
+              </Fragment>
             )}
           </ul>
         </div>
