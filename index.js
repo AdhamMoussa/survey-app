@@ -6,7 +6,9 @@ const { mongoURL, cookieKey } = require("./config/keys");
 const passportConfig = require("./services/passport");
 const authRoutes = require("./routes/authRoutes");
 const paymentRoutes = require("./routes/paymentRouts");
+const surveyRoutes = require("./routes/surveyRoutes");
 require("./models/User");
+require("./models/Survey");
 
 // connect mongoose to MongoDB
 mongoose.connect(mongoURL);
@@ -27,6 +29,7 @@ app.use(passport.session());
 passportConfig();
 authRoutes(app);
 paymentRoutes(app);
+surveyRoutes(app);
 
 if (process.env.NODE_ENV === "production") {
   // serve assets

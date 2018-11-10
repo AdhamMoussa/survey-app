@@ -6,6 +6,9 @@ import App from "./App";
 import configureStore from "./store/configureStore";
 import "./main.scss";
 
+import axios from "axios";
+window.axios = axios;
+
 const store = configureStore();
 
 const jsx = (

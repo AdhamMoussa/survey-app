@@ -15,7 +15,6 @@ module.exports = app => {
       req.user.credits += 5;
       const user = await req.user.save();
       res.send(user);
-      res.status(401).send({ error: "You must be logged in!!!" });
     }
   });
 };
